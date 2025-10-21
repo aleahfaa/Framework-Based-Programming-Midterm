@@ -7,19 +7,19 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-white text-gray-900">
+<body class="bg-gray-50 text-gray-900">
     <div class="min-h-screen">
-        <nav class="border-b border-gray-200">
+        <nav class="bg-white border-b border-gray-200">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between h-16">
                     <div class="flex items-center">
-                        <a href="{{ route('tasks.index') }}" class="text-xl font-semibold">Tasks</a>
+                        <a href="{{ route('tasks.index') }}" class="text-xl font-semibold text-gray-900">Tasks</a>
                     </div>
                     <div class="flex items-center space-x-4">
                         <span class="text-sm text-gray-600">{{ Auth::user()->name }}</span>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <button type="submit" class="text-sm text-gray-600 hover:text-gray-900">Logout</button>
+                            <button type="submit" class="text-sm text-gray-700 hover:text-gray-900">Logout</button>
                         </form>
                     </div>
                 </div>

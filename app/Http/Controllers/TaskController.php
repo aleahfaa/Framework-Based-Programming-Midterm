@@ -10,8 +10,14 @@ use Illuminate\Support\Facades\Auth;
 class TaskController extends Controller
 {
     public function index() {
-        $tasks = Auth::user()->tasks()->with('category')->latest()->get();
-        $categories = Auth::user()->categories;
+        $tasks = Auth::user()->tasks()
+            ->with('category')
+            ->orderByRaw('CASE WHEN deadline IS NULL THEN 1 ELSE 0 END')
+            ->orderBy('deadline', 'asc')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        
+        $categories = Auth::user()->categories()->latest()->paginate(4);
         return view('tasks.index', compact('tasks', 'categories'));
     }
     public function create() {
